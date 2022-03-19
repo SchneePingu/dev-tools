@@ -27,10 +27,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'morhetz/gruvbox'
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 set guifont=Fira\ Code\ Regular\ Nerd\ Font\ 12
 set encoding=utf-8
+let g:NERDTreeShowHidden=1
 let g:NERDTreeLimitedSyntax=1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
