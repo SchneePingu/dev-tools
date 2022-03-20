@@ -14,6 +14,8 @@ nnoremap L gt
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+tnoremap <Esc> <C-\><C-n>
+nmap <C-t> :tabnew<CR>:term<CR>a
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -33,7 +35,14 @@ Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'puremourning/vimspector'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
+let g:airline_theme='deus'
+let g:airline#extensions#hunks#enabled=1
+let g:airline#extensions#branch#enabled=1
 
 set guifont=Fira\ Code\ Regular\ Nerd\ Font\ 12
 set encoding=utf-8
