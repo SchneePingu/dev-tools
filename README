@@ -1,3 +1,6 @@
 .vimrc
 .config/nvim/init.vim
 .config/kitty/kitty.conf
+
+For vimspector:
+:CocInstall coc-java-debug

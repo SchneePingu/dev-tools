@@ -6,8 +6,11 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 set number
 autocmd vimenter * ++nested colorscheme gruvbox
-map <silent> <F5> :set background=dark<CR>
-map <silent> <F6> :set background=light<CR>
+map <silent> <F3> :set background=dark<CR>
+map <silent> <F4> :set background=light<CR>
+
+nnoremap H gT
+nnoremap L gt
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
@@ -29,6 +32,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'puremourning/vimspector'
 call plug#end()
 
 set guifont=Fira\ Code\ Regular\ Nerd\ Font\ 12
@@ -38,6 +42,15 @@ let g:NERDTreeLimitedSyntax=1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeWinSize = 50
+
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
+let g:vimspector_enable_mappings = 'HUMAN'                                                                                        
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+autocmd FileType java nmap <leader>dd :CocCommand java.debug.vimspector.start<CR>
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
