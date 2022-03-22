@@ -4,7 +4,6 @@ set expandtab
 
 set hidden
 
-nmap F :Files<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 
 set number
@@ -53,6 +52,12 @@ let g:NERDTreeLimitedSyntax=1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeWinSize = 50
+
+" Function 'HFiles' to use fzf with ag command and include hidden files
+" in the search result
+command! -bang -nargs=? -complete=dir HFiles call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -U -g ""'}, <bang>0)
+" Map 'HFiles' to SHIFT + f
+nmap <silent> F :HFiles<CR>
 
 nmap <F1> :CocCommand java.debug.vimspector.start<CR>
 let g:vimspector_enable_mappings = 'HUMAN'                                                                                        
