@@ -4,3 +4,8 @@
 
 For vimspector:
 :CocInstall coc-java-debug
+:CocInstall coc-tsserver
+
+Install:
+bat
+silversearcher-ag
