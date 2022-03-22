@@ -239,8 +239,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 set expandtab
 
-set hidden
-
 nmap gj :tabm -1<CR>
 nmap gk :tabm +1<CR>
 
@@ -251,9 +249,6 @@ set number
 autocmd vimenter * ++nested colorscheme gruvbox
 map <silent> <F3> :set background=dark<CR>
 map <silent> <F4> :set background=light<CR>
-
-nnoremap H gT
-nnoremap L gt
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
