@@ -53,8 +53,12 @@ let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeWinSize = 50
 
-" Function 'HFiles' to use fzf with ag command and include hidden files
-" in the search result
+" Function 'CFiles' to use fzf with rg command to search file content
+command! -bang -nargs=* CFiles call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+" Map 'CFiles' to f
+nmap <silent> f :CFiles<CR>
+
+" Function 'HFiles' to use fzf with ag command to search files including hidden files
 command! -bang -nargs=? -complete=dir HFiles call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -U -g ""'}, <bang>0)
 " Map 'HFiles' to SHIFT + f
 nmap <silent> F :HFiles<CR>
