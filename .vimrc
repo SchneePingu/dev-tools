@@ -38,8 +38,14 @@ Plug 'puremourning/vimspector'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
-Plug 'pacha/vem-tabline'
+Plug 'pechorin/any-jump.vim'
 call plug#end()
+
+" The installation of the plugin 'pechorin/any-jump.vim' is - for whatever reason - not triggered 
+" by the plugin manager. Therefore, it is installed manually.
+so ~/.local/share/nvim/plugged/any-jump.vim/plugin/any-jump.vim
+set rtp+=~/.local/share/nvim/plugged/any-jump.vim
+nmap <silent> gu :AnyJump<CR>
 
 let g:airline_theme='deus'
 let g:airline#extensions#hunks#enabled=1
@@ -488,3 +494,6 @@ nmap gj <Plug>vem_move_buffer_left-
 nmap gk <Plug>vem_move_buffer_right-
 nmap H <Plug>vem_prev_buffer-
 nmap L <Plug>vem_next_buffer-
+
+
+set rtp+=~/.local/share/nvim/plugged/any-jump.vim
