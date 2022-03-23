@@ -9,3 +9,4 @@ For vimspector:
 Install:
 bat
 silversearcher-ag
+sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep
