@@ -38,6 +38,7 @@ Plug 'puremourning/vimspector'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'pacha/vem-tabline'
 Plug 'pechorin/any-jump.vim'
 call plug#end()
 
