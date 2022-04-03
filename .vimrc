@@ -56,6 +56,15 @@ let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeWinSize = 50
 
+function! GitShow(selection) abort
+        let hash = split(a:selection, ' ')
+        let command = 'term git show --date="format:\%A, \%d. \%B \%Y, \%H:\%M" --pretty="format:\%an \%cr (\%cd)\%n\%n\%s\%n\%n"' . hash[0]
+        exe command
+        call feedkeys("\<CR>")
+endfunction
+
+command! -bang -nargs=* Gistory call fzf#run({'source': 'git log --pretty="format:%h  %s"', 'options': ['--preview', 'echo {} | cut -d " " -f1 | xargs --no-run-if-empty git show --date="format:%d. %m. %Y" --pretty="format:%an %cr (%cd)%n%n%s%n" --compact-summary --color=always'], 'sink': function('GitShow')})
+
 " Function 'CFiles' to use fzf with rg command to search file content
 command! -bang -nargs=* CFiles call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 " Map 'CFiles' to f
