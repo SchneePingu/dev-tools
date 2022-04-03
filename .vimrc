@@ -58,7 +58,7 @@ let NERDTreeWinSize = 50
 
 function! GitShow(selection) abort
         let hash = split(a:selection, ' ')
-        let command = 'term git show --date="format:\%A, \%d. \%B \%Y, \%H:\%M" --pretty="format:\%an \%cr (\%cd)\%n\%n\%s\%n\%n"' . hash[0]
+        let command = 'term git show --date="format:\%A, \%d. \%B \%Y, \%H:\%M" --pretty="format:\%an \%cr (\%cd)\%n\%n\%s\%n\%n" ' . hash[0]
         exe command
         call feedkeys("\<CR>")
 endfunction
