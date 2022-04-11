@@ -1,0 +1,50 @@
+#!/bin/bash
+
+scriptName=$(basename "$0")
+
+showUsage() {
+    echo "Usage: ${scriptName} [-e pathToExclude] pattern1 pattern2 .." 1>&2
+    exit 1
+}
+
+excludedPaths=()
+
+while getopts e: opt
+do
+   case $opt in
+        e) excludedPaths+=( -not -path "*/$OPTARG*" -a );;
+	?) showUsage
+   esac
+done
+
+shift $((OPTIND - 1))
+
+
+searchPatterns=(${@})
+numberOfSearchPatterns=${#searchPatterns[@]}
+
+if [ ${numberOfSearchPatterns} -eq 0 ]
+then
+   showUsage
+fi
+
+indexOfLastSearchPattern=$((${numberOfSearchPatterns} - 1))
+allButLastSearchPattern=(${searchPatterns[@]:0:${indexOfLastSearchPattern}})
+lastSearchPattern=${searchPatterns[${indexOfLastSearchPattern}]}
+
+unset searchPatterns
+unset numberOfSearchPatterns
+unset indexOfLastSearchPattern
+
+
+searchCommands=()
+
+for searchPattern in "${allButLastSearchPattern[@]}"
+do
+        searchCommands+=( -exec grep -I -q "${searchPattern}" {} \; )
+done
+
+searchCommands+=( -exec grep -l "${lastSearchPattern}" {} \;)
+
+
+find . "${excludedPaths[@]}" -type f "${searchCommands[@]}"
